@@ -66,7 +66,7 @@ public class JwtUtil {
      * @Return java.lang.String
      */
     public static String getUserNameByToken(HttpServletRequest request) {
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization");
         DecodedJWT jwt = JWT.decode(token);
         return jwt.getClaim("username")
                 .asString();

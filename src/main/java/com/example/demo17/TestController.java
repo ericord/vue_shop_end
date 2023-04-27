@@ -1,5 +1,6 @@
 package com.example.demo17;
 
+import com.example.demo17.common.Result;
 import com.example.demo17.menu.entity.Menus;
 import com.example.demo17.menu.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ public class TestController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping(value = "/getMenuTree")
-    public List<Menus> get() {
+    @GetMapping(value = "/menus")
+    public Result get() {
         List<Menus> allList = userRepository.getAllList();
         List<Menus> menuTree = getTree(allList, "/");
-        return menuTree;
+        return Result.ok(menuTree);
     }
 
     List<Menus> getTree(
