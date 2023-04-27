@@ -1,0 +1,26 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /api/private/v1/
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/cny-zt?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: Mysql111!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    open-in-view: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+    show-sql: true
