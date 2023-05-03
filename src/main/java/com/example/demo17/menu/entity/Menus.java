@@ -1,6 +1,7 @@
 package com.example.demo17.menu.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,8 +14,8 @@ import java.util.List;
 @EntityListeners(value = AuditingEntityListener.class)
 public class Menus {
     @Id
-    @Column(name = "code")
-    private String code;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "name")
     private String name;

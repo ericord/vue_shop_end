@@ -32,10 +32,10 @@ public class TestController {
         String s = "/[0-9]{3}";
         String pattern = parentCode.equals("/") ? s : (parentCode + s);
         //过滤出parentCode的所有所有子节点
-        childs = allMenus.stream().filter(e -> e.getCode().matches(pattern)).collect(Collectors.toList());
+        childs = allMenus.stream().filter(e -> e.getId().matches(pattern)).collect(Collectors.toList());
         //循环childs,递归调用
         childs.forEach(e -> {
-            e.setChilds(getTree(allMenus, e.getCode()));
+            e.setChilds(getTree(allMenus, e.getId()));
         });
         return childs;
     }
