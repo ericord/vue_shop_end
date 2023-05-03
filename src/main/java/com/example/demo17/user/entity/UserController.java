@@ -46,8 +46,8 @@ public class UserController {
             resultList = listQuery.getResultList();
         }
         List<User> users = MapBeanUtil.mapToBean(resultList, User.class);
-        result.put("pagenum", pagenation.getPageNum());
-        result.put("totle", total);
+        result.put("pageNum", pagenation.getPageNum());
+        result.put("total", total);
         result.put("users", users);
         return Result.ok(result);
     }

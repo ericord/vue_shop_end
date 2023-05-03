@@ -33,7 +33,7 @@ public class User {
     @Column(name = "email")
     private String email;
     @Column(name = "status")
-    private String status;//1->启用;2->禁用
+    private Integer status;//1->启用;2->禁用
     @Transient
     private String roleName;
 
