@@ -1,26 +1,24 @@
-package com.example.demo17;
+package com.example.demo17.menu;
 
 import com.example.demo17.common.Result;
 import com.example.demo17.menu.entity.Menus;
-import com.example.demo17.menu.repo.UserRepository;
+import com.example.demo17.menu.dao.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @RestController
-public class TestController {
+public class MenuController {
     @Autowired
-    private UserRepository userRepository;
+    private MenuRepository menuRepository;
 
     @GetMapping(value = "/menus")
     public Result get() {
-        List<Menus> allList = userRepository.getAllList();
+        List<Menus> allList = menuRepository.getAllList();
         List<Menus> menuTree = getTree(allList, "/");
         return Result.ok(menuTree);
     }

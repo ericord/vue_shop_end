@@ -1,6 +1,8 @@
 package com.example.demo17.user.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
  * @date 2023/4/29
  */
 @Data
+@DynamicInsert
+@DynamicUpdate(true)
 @Entity
 @Table(name = "user")
 public class User {

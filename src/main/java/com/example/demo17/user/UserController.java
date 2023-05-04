@@ -1,11 +1,17 @@
-package com.example.demo17.user.entity;
+package com.example.demo17.user;
 
 import com.example.demo17.common.MapBeanUtil;
 import com.example.demo17.common.Result;
+import com.example.demo17.user.dao.UserRepository;
+import com.example.demo17.user.entity.Pagenation;
+import com.example.demo17.user.entity.User;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
@@ -19,6 +25,9 @@ import java.util.Map;
 public class UserController {
     @PersistenceContext
     EntityManager entityManager;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping(value = "/users")
     public Result users(User user, Pagenation pagenation) {
@@ -52,5 +61,9 @@ public class UserController {
         return Result.ok(result);
     }
 
-
+    @PostMapping(value = "/user")
+    public Result saveUser(@RequestBody User user) {
+        userRepository.save(user);
+        return Result.ok(null);
+    }
 }
