@@ -2,11 +2,13 @@ package com.example.demo17.user;
 
 import com.example.demo17.common.MapBeanUtil;
 import com.example.demo17.common.Result;
+import com.example.demo17.common.dao.impl.JpaUtil;
 import com.example.demo17.user.dao.UserRepository;
 import com.example.demo17.user.entity.Pagenation;
 import com.example.demo17.user.entity.User;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +65,20 @@ public class UserController {
 
     @PostMapping(value = "/user")
     public Result saveUser(@RequestBody User user) {
-        userRepository.save(user);
+        JpaUtil.cSave(userRepository, user);
         return Result.ok(null);
+    }
+
+    public static void main(String[] args) {
+
+        User user = new User();
+        user.setId("1111");
+        user.setStatus(1);
+        /////////////////
+        User nu = new User();
+        nu.setId("222");
+        nu.setUserName("haha");
+        BeanUtils.copyProperties(nu, user, MapBeanUtil.getNullPropertyNames(nu));
+        int i = 0;
     }
 }

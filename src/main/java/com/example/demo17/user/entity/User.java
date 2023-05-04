@@ -1,8 +1,7 @@
 package com.example.demo17.user.entity;
 
+import com.example.demo17.common.entity.BaseEntity;
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,11 +13,9 @@ import java.time.LocalDateTime;
  * @date 2023/4/29
  */
 @Data
-@DynamicInsert
-@DynamicUpdate(true)
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends BaseEntity {
     @Id
     @Column(name = "ID")
     @GenericGenerator(name = "id", strategy = "uuid")
@@ -40,6 +37,7 @@ public class User {
     private Integer status;//1->启用;2->禁用
     @Transient
     private String roleName;
+
 
 
 }
