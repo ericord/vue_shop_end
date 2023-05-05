@@ -26,6 +26,8 @@ public class User extends BaseEntity {
     private String userCode;
     @Column(name = "USER_NAME")
     private String userName;
+    @Column(name = "password")
+    private String password;
     @Column(name = "CREATE_TIME")
 //    @Convert(converter = LocalDateTimeAttributeConverter.class)
     private LocalDateTime createTime;

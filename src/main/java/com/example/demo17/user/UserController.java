@@ -37,7 +37,7 @@ public class UserController {
 
         StringBuilder sql = new StringBuilder("select u.*, r.role_name from user u left join role r on u.role_code=r.role_code where 1=1 ");
         if (StringUtils.hasLength(user.getUserName())) {
-            sql.append(" and u.username like concat('%',:userName, '%'");
+            sql.append(" and u.user_name like concat('%',:userName, '%')");
         }
         Query countQuery = entityManager.createNativeQuery("select count(1) from (" + sql + ") as h");
         Integer offset = (pagenation.getPageNum() - 1) * pagenation.getPageSize();
