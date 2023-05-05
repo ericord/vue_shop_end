@@ -18,7 +18,8 @@ import java.time.LocalDateTime;
 public class User extends BaseEntity {
     @Id
     @Column(name = "ID")
-    @GenericGenerator(name = "id", strategy = "uuid")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "ids")
+    @GenericGenerator(name = "ids", strategy = "com.example.demo17.common.UUIDGenerator")
     private String id;
     @Column(name = "ROLE_CODE")
     private String roleCode;

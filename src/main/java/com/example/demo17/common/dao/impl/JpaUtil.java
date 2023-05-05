@@ -4,6 +4,7 @@ import com.example.demo17.common.MapBeanUtil;
 import com.example.demo17.common.entity.BaseEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -15,6 +16,10 @@ import java.util.Optional;
 public class JpaUtil {
 
     public static <T extends JpaRepository, S extends BaseEntity> void cSave(T repository, S entity) {
+        if (!StringUtils.hasLength(entity.getId())) {
+            repository.save(entity);
+            return;
+        }
         Optional op = repository.findById(entity.getId());
         Object old = op.get();
         if (old == null) {
