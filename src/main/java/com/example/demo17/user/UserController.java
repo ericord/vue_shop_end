@@ -11,10 +11,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -66,6 +63,12 @@ public class UserController {
     @PostMapping(value = "/user")
     public Result saveUser(@RequestBody User user) {
         JpaUtil.cSave(userRepository, user);
+        return Result.ok(null);
+    }
+
+    @DeleteMapping(value = "/user/{id}")
+    public Result deleteUser(@PathVariable String id) {
+        userRepository.deleteById(id);
         return Result.ok(null);
     }
 
