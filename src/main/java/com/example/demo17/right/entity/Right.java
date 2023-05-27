@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author chaonianye
@@ -16,8 +18,6 @@ import javax.persistence.*;
 public class Right {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "id")
-    @GenericGenerator(name = "id", strategy = "com.example.demo17.common.UUIDGenerator")
     private String id;
 
     /**
@@ -35,4 +35,7 @@ public class Right {
      */
     @Column(name = "LEVEL")
     private Integer level;
+
+    @Transient
+    private List<Right> children = new ArrayList<>();
 }
